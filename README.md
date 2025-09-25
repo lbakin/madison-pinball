@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Madison Pinball Website
 
-## Getting Started
+Rebuild of madisonpinball.com
+ using Next.js, Sanity CMS, and Netlify. The goal is to replicate the existing Wix site while improving maintainability, performance, and flexibility.
 
-First, run the development server:
+Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Next.js
+ – React framework for the frontend
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Tailwind CSS
+ – Utility-first styling
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Sanity
+ – Headless CMS for content management
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Netlify
+ – Hosting, CI/CD, and DNS management
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+src/
+  app/              # Next.js app router
+    page.js         # Home page
+    locations/      # Locations section + subpages
+      io-arcade-bar/
+      schwoeglers/
+      pooleys/
+      sugar-river-lanes/
+    monthly-meetups/
+    killer-queen-arcade/
+    report-a-problem/
+    buy-sell-fix-contact/
+  components/       # Reusable React components (Nav, Footer, Hero, etc.)
+  sanity/           # Sanity schemas and config
+public/             # Static assets
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+Style Guide
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Colors follow Tailwind’s built-in palette, chosen to complement the Madison Pinball logo.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Primary: rose-800
+
+Accent: white, black, gray-700
+
+Interactive: hover:text-rose-800, hover:bg-white
+
+Typography:
+
+Sans-serif: Montserrat
+
+Cursive/accent: Dancing Script
+
+
+Deployment
+
+This project is deployed on Netlify. Any push to the main branch triggers a redeploy.
+
+DNS is managed through Network Solutions, with nameservers pointed to Netlify.
+
+
+License
+
+MIT License © Madison Pinball

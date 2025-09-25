@@ -1,103 +1,52 @@
-import Image from "next/image";
+import Hero from "@/components/Hero";
+import HomeSections from "@/components/CopySection";
+import CtaBar from "@/components/CtaBar";
 
-export default function Home() {
+function CopySection() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <section className="bg-gray-900">
+      <div className="mx-auto max-w-3xl px-4 py-12 sm:py-16">
+        <div className="space-y-6 text-gray-100 leading-relaxed">
+          <h2 class="text-2xl text-center">Madison Pinball is a group of local pinball enthusiasts/collectors that teamed up back in 2014 with the goal of bringing quality pinball back to Madison, WI. <br/>Mission Accomplished!</h2>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          <p>
+            Our continuing goal is to provide everyone the opportunity to play a wide variety of quality pinball games on location.  We strive to maintain games that play exceptionally well, and support the local community of pinball enthusiasts.  Simply put, "We buy, sell, collect, repair and play pinball - and we love doing it!"
+          </p>
+
+          <p>
+            <a href="/locations">4 locations</a> currently feature a variety of our great playing games.  A handful of these locations feature friendly <a href="/monthly-meetups">Monthly Tournaments</a>.  We also run Launch Parties for almost every new game that comes out!
+          </p>
+
+          <p>
+            Our goal is to keep all games clean and working properly.  However - it's pinball so one thing for sure is that they will break down or behave oddly from time to time.  That's just the way of the Silverball.
+          </p>
+
+          <p>
+            If you do experience any issues with any of our games, please be sure to <a href="/report-a-problem">reach out to us</a> so we can get it resolved for you ASAP.
+          </p>
+
+          <p>
+            Be sure to let these establishments know that you appreciate them allowing us to put pinball on location, and support them by purchasing some fine beverage and/or menu items!!
+          </p>
+
+          <p>
+            We couldn't do this without the support of everyone that stops out to play - so THANK YOU!
+          </p>
+
+          <p>Hilton, Sean &amp; Garrett</p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </div>
+    </section>
+  );
+}
+
+
+export default function HomePage() {
+  return (
+    <main className="bg-[var(--mp-ink)] text-[var(--mp-cream)]">
+      <Hero />
+      <CopySection />
+      <CtaBar />
+    </main>
   );
 }

@@ -24,3 +24,15 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Inline link styling for body copy */
+@layer base {
+  /* Avoid styling buttons or nav items that also use <a> */
+  :where(p, li, blockquote, .copy, .prose) a:not(.btn, .nav-link, .no-link-style) {
+    @apply  underline decoration-red-500 underline-offset-2
+           hover:text-sky-400 hover:decoration-red-600
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2
+           transition-colors;
+  }
+
+}
