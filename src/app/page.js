@@ -7,7 +7,7 @@ function CopySection() {
     <section className="bg-gray-900">
       <div className="mx-auto max-w-3xl px-4 py-12 sm:py-16">
         <div className="space-y-6 text-gray-100 leading-relaxed">
-          <h2 class="text-2xl text-center">Madison Pinball is a group of local pinball enthusiasts/collectors that teamed up back in 2014 with the goal of bringing quality pinball back to Madison, WI. <br/>Mission Accomplished!</h2>
+          <h2 className="text-3xl font-black text-center">Madison Pinball is a group of local pinball enthusiasts/collectors that teamed up back in 2014 with the goal of bringing quality pinball back to Madison, WI. <br/>Mission Accomplished!</h2>
 
           <p>
             Our continuing goal is to provide everyone the opportunity to play a wide variety of quality pinball games on location.  We strive to maintain games that play exceptionally well, and support the local community of pinball enthusiasts.  Simply put, "We buy, sell, collect, repair and play pinball - and we love doing it!"
