@@ -37,15 +37,11 @@ Colors follow Tailwind’s built-in palette, chosen to complement the Madison Pi
 
 ---
 
-## License
-
-**MIT License** © Madison Pinball
-
-
 ## Project Structure
 
 ```bash
 src/
+
   app/              # Next.js app router
     page.js         # Home page
     locations/      # Locations section + subpages
@@ -60,4 +56,13 @@ src/
   components/       # Reusable React components (Nav, Footer, Hero, etc.)
   sanity/           # Sanity schemas and config
 public/             # Static assets
+```
+---
+
+## License
+
+**MIT License** © Madison Pinball
+
+
+
 
