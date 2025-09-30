@@ -112,8 +112,8 @@ export default function KillerQueenPage() {
             {/* Tall left column images */}
             <div className="col-span-1 row-span-2 overflow-hidden rounded-lg border border-white/10">
               <Image
-                src="/images/killer-queen/kq-cabinet.jpg"
-                alt="Killer Queen cabinet at I/O Arcade Bar"
+                src="/images/killer-queen/kq-players-b2b.jpg"
+                alt="Killer Queen cabinets"
                 width={900}
                 height={1400}
                 className="h-full w-full object-cover transition duration-300 hover:scale-[1.03]"
@@ -135,7 +135,7 @@ export default function KillerQueenPage() {
             {/* Bottom-right */}
             <div className="col-span-1 row-span-1 overflow-hidden rounded-lg border border-white/10">
               <Image
-                src="/images/killer-queen/kq-players.jpg"
+                src="/images/killer-queen/kq-excitement.jpg"
                 alt="Players high-fiving after a match"
                 width={900}
                 height={700}

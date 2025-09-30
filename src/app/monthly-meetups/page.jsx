@@ -8,7 +8,7 @@ export default function MonthlyMeetupsPage() {
       <div className="mx-auto w-full max-w-6xl px-4 py-10 sm:py-14">
         {/* Title */}
         <header className="mb-8">
-          <h1 className="text-3xl font-semibold tracking-tight text-rose-300">
+          <h1 className="text-3xl font-semibold tracking-tight ">
             Monthly Meetups
           </h1>
         </header>
@@ -20,14 +20,14 @@ export default function MonthlyMeetupsPage() {
   </p>
 
   <section aria-labelledby="venues-heading" className="space-y-4">
-    <h2 id="venues-heading" className="text-xl font-semibold tracking-tight text-rose-300">
+    <h2 id="venues-heading" className="text-xl font-semibold tracking-tight ">
       Where and when
     </h2>
 
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
       {/* Schwoegler's */}
       <div className="rounded-lg border border-gray-800 bg-gray-950 p-4">
-        <h3 className="text-lg font-semibold text-rose-300">Schwoegler&apos;s</h3>
+        <h3 className="text-lg font-semibold ">Schwoegler&apos;s</h3>
         <p className="mt-1 text-sm text-gray-300">
           <span className="font-medium">Third Saturday</span> · 6:00 pm start
         </p>
@@ -35,7 +35,7 @@ export default function MonthlyMeetupsPage() {
 
       {/* I/O Arcade — Heads-Up */}
       <div className="rounded-lg border border-gray-800 bg-gray-950 p-4">
-        <h3 className="text-lg font-semibold text-rose-300">I/O Arcade — Heads-Up</h3>
+        <h3 className="text-lg font-semibold ">I/O Arcade — Heads-Up</h3>
         <p className="mt-1 text-sm text-gray-300">
           <span className="font-medium">Second Wednesday</span> · 7:00 pm start
         </p>
@@ -44,7 +44,7 @@ export default function MonthlyMeetupsPage() {
 
       {/* I/O Arcade — Main */}
       <div className="rounded-lg border border-gray-800 bg-gray-950 p-4">
-        <h3 className="text-lg font-semibold text-rose-300">I/O Arcade — Main</h3>
+        <h3 className="text-lg font-semibold ">I/O Arcade — Main</h3>
         <p className="mt-1 text-sm text-gray-300">
           <span className="font-medium">Fourth Wednesday</span> · 7:00 pm start
         </p>
@@ -53,7 +53,7 @@ export default function MonthlyMeetupsPage() {
 
       {/* Pooley's */}
       <div className="rounded-lg border border-gray-800 bg-gray-950 p-4">
-        <h3 className="text-lg font-semibold text-rose-300">Pooley&apos;s</h3>
+        <h3 className="text-lg font-semibold ">Pooley&apos;s</h3>
         <p className="mt-1 text-sm text-gray-300">
           <span className="font-medium">First Thursday</span> · 6:30 pm start
         </p>
@@ -65,7 +65,7 @@ export default function MonthlyMeetupsPage() {
     aria-labelledby="rules-heading"
     className="rounded-lg border border-gray-800 bg-gray-950 p-4 text-sm text-gray-300"
   >
-    <h3 id="rules-heading" className="mb-2 font-semibold text-rose-300">
+    <h3 id="rules-heading" className="mb-2 font-semibold ">
       Rules and officiating
     </h3>
     <p>
@@ -107,7 +107,7 @@ export default function MonthlyMeetupsPage() {
 
        {/* Table wrapper */}
 <div className="overflow-x-auto rounded-lg border border-gray-800">
-  <h2 className="text-xl font-semibold text-rose-300">Upcoming Tournament Dates At Each Location:
+  <h2 className="text-xl font-semibold ">Upcoming Tournament Dates At Each Location:
 </h2>
   <table className="min-w-full border-collapse text-sm">
     <caption className="sr-only">Monthly meetup dates by location</caption>
@@ -149,7 +149,7 @@ export default function MonthlyMeetupsPage() {
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="whitespace-nowrap">{date}</span>
                     {note && (
-                      <span className="rounded-full border border-rose-800/60 bg-rose-800/10 px-2 py-0.5 text-[11px] leading-none text-rose-300">
+                      <span className="rounded-full border border-rose-800/60 bg-rose-800/10 px-2 py-0.5 text-[11px] leading-none ">
                         {note}
                       </span>
                     )}
