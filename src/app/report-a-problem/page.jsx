@@ -2,6 +2,8 @@
 import { useState } from "react";
 
 export default function ReportAProblemPage() {
+  const encode = (form) => new URLSearchParams([...new FormData(form)]).toString();
+
   const [submitted, setSubmitted] = useState(false);
 
   return (
@@ -35,7 +37,17 @@ export default function ReportAProblemPage() {
             data-netlify="true"
             data-netlify-honeypot="bot-field"
             className="space-y-6"
-            onSubmit={() => setSubmitted(true)}
+            onSubmit={async (e) => {
+              e.preventDefault();
+              const form = e.currentTarget;
+              await fetch("/__forms.html", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: encode(form),
+              });
+              setSubmitted(true);
+              form.reset();
+            }}
           >
             {/* Required for Netlify Forms */}
             <input type="hidden" name="form-name" value="report-a-problem" />

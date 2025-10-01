@@ -19,10 +19,32 @@ const LOCS = [
   { slug: "sugar-river-lanes", name: "Sugar River Lanes" }
 ];
 
+// Simple inline SVG icons
+function HouseIcon({ className = "h-5 w-5" }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className}>
+      <path
+        d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9.5Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+function FacebookIcon({ className = "h-5 w-5" }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className}>
+      <path
+        d="M22 12.06C22 6.51 17.52 2 12 2S2 6.51 2 12.06c0 4.99 3.66 9.14 8.44 9.94v-7.03H7.9v-2.91h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22c4.78-.8 8.44-4.95 8.44-9.94Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 export function Nav() {
-  const [open, setOpen] = useState(false); 
-  const [ddOpen, setDdOpen] = useState(false); 
-  const [mobileLocOpen, setMobileLocOpen] = useState(false); 
+  const [open, setOpen] = useState(false);
+  const [ddOpen, setDdOpen] = useState(false);
+  const [mobileLocOpen, setMobileLocOpen] = useState(false);
   const panelRef = useRef(null);
   const ddRef = useRef(null);
 
@@ -47,10 +69,12 @@ export function Nav() {
   return (
     <header className="sticky top-0 z-50">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/80 to-black/0" />
-
       <div className="relative border-b border-white/10 bg-black/70 backdrop-blur">
         <div className="container mx-auto max-w-6xl flex items-center justify-between px-4 py-3">
-          <Link href="/" className="flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-800">
+          <Link
+            href="/"
+            className="flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-800"
+          >
             <Image
               src="/images/logo.png"
               alt="Madison Pinball"
@@ -70,10 +94,19 @@ export function Nav() {
                   return (
                     <li key={item.href}>
                       <Link
-                        className="text-white/90 hover:text-rose-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-800"
+                        className="inline-flex nav-link items-center gap-2 text-white/90 hover:text-rose-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-800"
                         href={item.href}
+                        aria-label={item.label === "Home" ? "Home" : undefined}
+                        title={item.label === "Home" ? "Home" : undefined}
                       >
-                        {item.label}
+                        {item.label === "Home" ? (
+                          <>
+                            <HouseIcon className="h-5 w-5" />
+                            <span className="sr-only">Home</span>
+                          </>
+                        ) : (
+                          item.label
+                        )}
                       </Link>
                     </li>
                   );
@@ -88,9 +121,7 @@ export function Nav() {
                       aria-haspopup="menu"
                       aria-expanded={ddOpen}
                       onClick={() => setDdOpen((v) => !v)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Escape") setDdOpen(false);
-                      }}
+                      onKeyDown={(e) => e.key === "Escape" && setDdOpen(false)}
                     >
                       Locations
                       <svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true">
@@ -112,7 +143,7 @@ export function Nav() {
                         <li>
                           <Link
                             href="/locations"
-                            className="block px-4 py-2 text-sm text-white/90 hover:bg-white/10"
+                            className="block px-4 py-2 nav-link text-sm text-white/90 hover:bg-white/10"
                             onClick={() => setDdOpen(false)}
                             role="menuitem"
                           >
@@ -124,7 +155,7 @@ export function Nav() {
                           <li key={l.slug}>
                             <Link
                               href={`/locations/${l.slug}`}
-                              className="block px-4 py-2 text-sm text-white/90 hover:bg-white/10"
+                              className="block px-4 py-2 nav-link text-sm text-white/90 hover:bg-white/10"
                               onClick={() => setDdOpen(false)}
                               role="menuitem"
                             >
@@ -137,6 +168,19 @@ export function Nav() {
                   </li>
                 );
               })}
+              <li>
+                <a
+                  href="https://www.facebook.com/MadisonPinball"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-white/90 hover:text-rose-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-800"
+                  aria-label="Madison Pinball Facebook Group"
+                  title="Facebook"
+                >
+                  <FacebookIcon className="h-5 w-5" />
+                  <span className="sr-only">Facebook</span>
+                </a>
+              </li>
             </ul>
           </nav>
 
@@ -167,7 +211,7 @@ export function Nav() {
           className={[
             "lg:hidden overflow-hidden border-t border-white/10 bg-black/85 backdrop-blur",
             "transition-all duration-300 ease-out",
-            open ? "max-h-[28rem] opacity-100" : "max-h-0 opacity-0"
+            open ? "max-h-[32rem] opacity-100" : "max-h-0 opacity-0"
           ].join(" ")}
         >
           <nav className="container mx-auto max-w-6xl px-4 py-3">
@@ -178,10 +222,19 @@ export function Nav() {
                     <li key={item.href}>
                       <Link
                         onClick={() => setOpen(false)}
-                        className="block py-2 text-white/90 hover:text-rose-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-800"
+                        className="inline-flex nav-link items-center gap-2 py-2 text-white/90 hover:text-rose-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-800"
                         href={item.href}
+                        aria-label={item.label === "Home" ? "Home" : undefined}
+                        title={item.label === "Home" ? "Home" : undefined}
                       >
-                        {item.label}
+                        {item.label === "Home" ? (
+                          <>
+                            <HouseIcon className="h-5 w-5" />
+                            <span>Home</span>
+                          </>
+                        ) : (
+                          item.label
+                        )}
                       </Link>
                     </li>
                   );
@@ -213,7 +266,7 @@ export function Nav() {
                           <li>
                             <Link
                               onClick={() => { setOpen(false); setMobileLocOpen(false); }}
-                              className="block py-2 text-white/80 hover:text-rose-400"
+                              className="block nav-link py-2 text-white/80 hover:text-rose-400"
                               href="/locations"
                             >
                               All Locations
@@ -223,7 +276,7 @@ export function Nav() {
                             <li key={l.slug}>
                               <Link
                                 onClick={() => { setOpen(false); setMobileLocOpen(false); }}
-                                className="block py-2 text-white/80 hover:text-rose-400"
+                                className="block nav-link py-2 text-white/80 hover:text-rose-400"
                                 href={`/locations/${l.slug}`}
                               >
                                 {l.name}
@@ -236,6 +289,22 @@ export function Nav() {
                   </li>
                 );
               })}
+
+              {/* Facebook link in mobile menu */}
+              <li>
+                <a
+                  href="https://www.facebook.com/groups/MadisonKQ/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex nav-link items-center gap-2 py-2 text-white/90 hover:text-rose-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-800"
+                  aria-label="Madison Pinball Facebook Group"
+                  title="Facebook"
+                  onClick={() => setOpen(false)}
+                >
+                  <FacebookIcon className="h-5 w-5" />
+                  <span>Facebook</span>
+                </a>
+              </li>
             </ul>
           </nav>
         </div>
