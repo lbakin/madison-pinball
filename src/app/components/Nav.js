@@ -20,9 +20,9 @@ const LOCS = [
 ];
 
 export function Nav() {
-  const [open, setOpen] = useState(false); // mobile menu
-  const [ddOpen, setDdOpen] = useState(false); // desktop dropdown
-  const [mobileLocOpen, setMobileLocOpen] = useState(false); // mobile accordion
+  const [open, setOpen] = useState(false); 
+  const [ddOpen, setDdOpen] = useState(false); 
+  const [mobileLocOpen, setMobileLocOpen] = useState(false); 
   const panelRef = useRef(null);
   const ddRef = useRef(null);
 

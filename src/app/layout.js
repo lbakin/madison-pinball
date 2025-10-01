@@ -4,6 +4,11 @@ import { PageShell } from "@/components/PageShell";
 export const metadata = {
   title: "Madison Pinball",
   description: "Pinball across Madison — locations, events, and more.",
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon-32x32.png',
+    apple: '/apple-touch-icon.png',
+  },
 };
 
 export default function RootLayout({ children }) {

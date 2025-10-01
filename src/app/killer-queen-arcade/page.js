@@ -50,20 +50,7 @@ export default function KillerQueenPage() {
             Madison.
           </p>
           <div className="mt-8 inline-flex gap-3">
-            <a
-              href="#details"
-              className="rounded-full border border-white/40 px-5 py-2 text-sm font-medium hover:border-rose-800 hover:bg-white hover:text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-800"
-            >
-              Learn more
-            </a>
-            <Link
-              href="https://www.facebook.com/groups/MadisonKQ/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full bg-rose-800 px-5 py-2 text-sm font-semibold hover:bg-white hover:text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-800"
-            >
-              Join the Facebook Group
-            </Link>
+            
           </div>
         </div>
       </section>
@@ -96,14 +83,16 @@ export default function KillerQueenPage() {
                 Join the Madison Killer Queen Facebook group to stay up to date
                 on happenings and be in the loop for regular meetups.
               </p>
-              <Link
-                href="https://www.facebook.com/groups/MadisonKQ/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-3 inline-block rounded-lg border border-rose-800 px-4 py-2 text-sm font-medium hover:bg-white hover:text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-800"
-              >
-                facebook.com/groups/MadisonKQ
-              </Link>
+
+            <Link
+              href="https://www.facebook.com/groups/MadisonKQ/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block rounded-full bg-rose-800 mt-3 px-5 py-2 text-sm font-semibold hover:bg-white hover:text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-800"
+            >
+              Join the Facebook Group
+            </Link>
+              
             </div>
           </div>
 
