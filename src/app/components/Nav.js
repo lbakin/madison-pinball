@@ -94,7 +94,7 @@ export function Nav() {
                   return (
                     <li key={item.href}>
                       <Link
-                        className="inline-flex nav-link items-center gap-2 text-white/90 hover:text-rose-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-800"
+                        className="inline-flex nav-link align-text-bottom items-center gap-2 text-white/90 hover:text-rose-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-800"
                         href={item.href}
                         aria-label={item.label === "Home" ? "Home" : undefined}
                         title={item.label === "Home" ? "Home" : undefined}
@@ -117,7 +117,7 @@ export function Nav() {
                   <li key={item.href} className="relative" ref={ddRef}>
                     <button
                       type="button"
-                      className="inline-flex items-center gap-1 text-white/90 hover:text-rose-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-800"
+                      className="inline-flex align-text-bottom items-center gap-1 text-white/90 hover:text-rose-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-800"
                       aria-haspopup="menu"
                       aria-expanded={ddOpen}
                       onClick={() => setDdOpen((v) => !v)}
@@ -173,7 +173,7 @@ export function Nav() {
                   href="https://www.facebook.com/MadisonPinball"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-white/90 hover:text-rose-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-800"
+                  className="inline-flex align-text-bottom items-center gap-2 text-white/90 hover:text-rose-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-800"
                   aria-label="Madison Pinball Facebook Group"
                   title="Facebook"
                 >

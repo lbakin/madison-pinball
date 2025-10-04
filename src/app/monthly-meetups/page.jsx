@@ -107,7 +107,7 @@ export default function MonthlyMeetupsPage() {
 
        {/* Table wrapper */}
 <div className="overflow-x-auto rounded-lg border border-gray-800">
-  <h2 className="text-xl font-semibold ">Upcoming Tournament Dates At Each Location:
+  <h2 className="text-xl font-semibold p-4">Upcoming Tournament Dates At Each Location:
 </h2>
   <table className="min-w-full border-collapse text-sm">
     <caption className="sr-only">Monthly meetup dates by location</caption>
