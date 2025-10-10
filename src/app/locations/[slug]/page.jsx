@@ -1,23 +1,37 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getLocation, LOCATIONS } from "~/lib/locations";
+import { sanityClient } from "~/src/lib/client";
+import { allLocationSlugsQuery, locationBySlugQuery } from "~/src/lib/queries";
+import { urlFor } from "~/src/lib/image"
 import PhotoGallery from "./PhotoGallery";
 import LineupTable from "./LineupTable";
 
+
+export const revalidate = 60;  
+
+// Build-time slugs from Sanity
 export async function generateStaticParams() {
-  return LOCATIONS.map((l) => ({ slug: l.slug }));
+  const slugs = await sanityClient.fetch(allLocationSlugsQuery);
+  return (slugs || []).map(s => ({ slug: s.slug }));
 }
 
-export async function generateMetadata({ params }) {
-  const loc = getLocation(params.slug);
-  return {
-    title: loc ? `${loc.name} — Madison Pinball` : "Location — Madison Pinball",
-    description: loc ? `Play pinball at ${loc.name}.` : "Pinball location details."
-  };
+
+
+// Metadata from Sanity
+export async function generateMetadata(props) {
+  const { slug: routeSlug } = await props.params;        // rename
+  const loc = await sanityClient.fetch(locationBySlugQuery, { slug: routeSlug });
+
+  if (!loc) {
+    return { title: "Location — Madison Pinball", description: "Pinball location details." };
+  }
+  return { title: `${loc.name} — Madison Pinball`, description: `Play pinball at ${loc.name}.` };
 }
 
-export default function LocationPage({ params }) {
-  const loc = getLocation(params.slug);
+export default async function LocationPage(props) {
+  const { slug: routeSlug } = await props.params;         // rename
+  const loc = await sanityClient.fetch(locationBySlugQuery, { slug: routeSlug });
+
   if (!loc) {
     return (
       <section className="mx-auto max-w-6xl px-4 py-16">
@@ -29,15 +43,19 @@ export default function LocationPage({ params }) {
     );
   }
 
-  const { slug, name, venueUrl, address, hours, lineup } = loc;
-  const logoSrc = `/images/locations/${slug}.png`;
+  const { slug, name, venueUrl, address = {}, hours = [], lineup = [], images = [], logo } = loc;
+
+  // Prefer CMS logo; fall back to /public png if missing
+  const fileLogo = `/images/locations/${slug}.png`;
+  const cmsLogoUrl = logo ? urlFor(logo).width(1200).fit("max").url() : null;
+  const logoSrc = cmsLogoUrl || fileLogo;
 
   return (
     <section className="py-12">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-       {/* Header: 2-column layout (left 2/3, right 1/3). Stacks on mobile */}
+        {/* Header */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 lg:items-start">
-          {/* LEFT: image → name → address (centered). Spans 2/3 on lg+ */}
+          {/* LEFT: image → name → address */}
           <div className="lg:col-span-2 flex flex-col items-center text-center">
             {/* Logo */}
             <Link
@@ -49,7 +67,7 @@ export default function LocationPage({ params }) {
             >
               <div className="relative h-56 w-[32rem] max-w-full sm:h-60">
                 <Image
-                  src={`/images/locations/${slug}.png`}
+                  src={logoSrc}
                   alt={`${name} logo`}
                   fill
                   className="object-contain"
@@ -63,38 +81,45 @@ export default function LocationPage({ params }) {
             <h1 className="mt-6 text-3xl sm:text-4xl font-bold text-white">{name}</h1>
 
             {/* Address */}
-            <div className="mt-3">
-              <a
-                href={
-                  address.mapsUrl ||
-                  `https://www.google.com/maps?q=${encodeURIComponent(
-                    `${address.line1}${address.line2 ? ", " + address.line2 : ""}`
-                  )}`
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline hover:text-rose-800"
-              >
-                <span className="block text-white text-2xl sm:text-3xl leading-snug">{address.line1}</span>
-                {address.line2 ? (
-                  <span className="block text-white text-2xl sm:text-3xl leading-snug">{address.line2}</span>
-                ) : null}
-              </a>
-            </div>
+            {(address.line1 || address.line2 || address.mapsUrl) && (
+              <div className="mt-3">
+                <a
+                  href={
+                    address.mapsUrl ||
+                    `https://www.google.com/maps?q=${encodeURIComponent(
+                      `${address.line1 || ""}${address.line2 ? ", " + address.line2 : ""}`
+                    )}`
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-rose-800"
+                >
+                  {address.line1 && (
+                    <span className="block text-white text-2xl sm:text-3xl leading-snug">{address.line1}</span>
+                  )}
+                  {address.line2 && (
+                    <span className="block text-white text-2xl sm:text-3xl leading-snug">{address.line2}</span>
+                  )}
+                </a>
+              </div>
+            )}
           </div>
 
-          {/* RIGHT: Hours (1/3 width on lg+) */}
+          {/* RIGHT: Hours */}
           <div className="lg:col-span-1">
             <h2 className="text-xl font-semibold">Hours</h2>
             <ul className="mt-4 divide-y divide-gray-200 rounded-lg border border-gray-200 bg-white">
-              {hours.map((h) => (
+              {(hours || []).map((h) => (
                 <li key={h.day} className="flex items-center justify-between px-4 py-2">
                   <span className="font-medium text-gray-900">{h.day}</span>
                   <span className="text-gray-700">
-                    {h.open && h.close ? `${h.open} to ${h.close}` : "See venue"}
+                    {h?.open && h?.close ? `${h.open} to ${h.close}` : "See venue"}
                   </span>
                 </li>
               ))}
+              {!hours?.length && (
+                <li className="px-4 py-2 text-gray-700">See venue</li>
+              )}
             </ul>
             {venueUrl ? (
               <div className="mt-3 text-sm">
@@ -106,9 +131,8 @@ export default function LocationPage({ params }) {
           </div>
         </div>
 
-
-        {/* Photos: only show ones that exist */}
-        <PhotoGallery slug={slug} name={name} />
+        {/* Photos: prefer Sanity gallery, otherwise fall back to /public files */}
+        <PhotoGallery slug={slug} name={name} images={images} />
 
         {/* Sortable lineup table */}
         <LineupTable rows={lineup} />
