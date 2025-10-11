@@ -14,7 +14,10 @@ export default {
         { name: 'href', type: 'string', title: 'Href' },
       ]}],
     },
-    { name: 'footer', title: 'Footer Text', type: 'text' },
-    { name: 'contactEmail', title: 'Contact Email', type: 'string' },
+    {name: 'footer',
+    title: 'Footer Content',
+    type: 'array',
+    of: [{ type: 'block' }],
+    description: 'Rich footer text. You can add links, bold, etc.'}
   ]
 }

@@ -1,7 +1,14 @@
 import groq from 'groq'
 
-export const allLocationSlugsQuery = groq`*[_type == "location" && defined(slug.current)]{
-  "slug": slug.current
+
+export const siteSettingsQ = groq`*[_type == "siteSettings"][0]{
+  title, logo, nav[]{label, href}, footer, contactEmail
+}`
+
+
+export const allLocationSlugsQuery = groq`*[_type == "location" && defined(slug.current)]|order(name asc){
+  "slug": slug.current,
+  name
 }`
 
 export const locationBySlugQuery = groq`*[_type == "location" && slug.current == $slug][0]{
@@ -15,7 +22,6 @@ export const locationBySlugQuery = groq`*[_type == "location" && slug.current ==
   lineup
 }`
 
-// /src/lib/queries.js
 export const pageBySlugQ = /* groq */ `
 *[_type == "page" && slug.current == $slug][0]{
   _id, title, "slug": slug.current, seo,
