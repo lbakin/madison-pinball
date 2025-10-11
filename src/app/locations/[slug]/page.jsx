@@ -19,7 +19,7 @@ export async function generateStaticParams() {
 
 // Metadata from Sanity
 export async function generateMetadata(props) {
-  const { slug: routeSlug } = await props.params;        // rename
+  const { slug: routeSlug } = await props.params;        
   const loc = await sanityClient.fetch(locationBySlugQuery, { slug: routeSlug });
 
   if (!loc) {
@@ -29,7 +29,7 @@ export async function generateMetadata(props) {
 }
 
 export default async function LocationPage(props) {
-  const { slug: routeSlug } = await props.params;         // rename
+  const { slug: routeSlug } = await props.params;        
   const loc = await sanityClient.fetch(locationBySlugQuery, { slug: routeSlug });
 
   if (!loc) {
