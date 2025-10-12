@@ -12,6 +12,11 @@ import sectionCTA from './sections/cta'
 import sectionFAQ from './sections/faq'
 import sectionHTML from './sections/html'
 import { sectionMeetups, sectionLocations, linkButton } from './sections/shared'
+import homePage from './homePage'
+import monthlyMeetups from './monthlyMeetups'
+import killerQueen from './killerQueen'
+import reportProblem from './reportProblem'
+import contact from './contact'
 
 
 
@@ -31,5 +36,10 @@ export const schemaTypes = [
   hoursItem,
   lineupItem,
   location,
-  siteSettings
+  siteSettings,
+  homePage,
+  monthlyMeetups,
+  killerQueen,
+  reportProblem,
+  contact
 ]

@@ -1,29 +1,47 @@
 import Link from "next/link";
 
-export default function CtaBar() {
+export default function CtaBar({ title, summary, buttons = [] }) {
+  const hasSanity = title || summary || buttons?.length;
+  if (!hasSanity) {
+    // your current fallback
+    return (
+      <section className="bg-rose-800">
+        <div className="mx-auto max-w-6xl px-4 py-10 text-center">
+          <h2 className="text-2xl font-extrabold text-white">Thanks for playing, Madison!</h2>
+          <p className="mt-2 text-white/90">Keep up with monthly meetups, Killer Queen nights, and more.</p>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <Link href="/killer-queen-arcade" className="rounded-xl bg-white px-5 py-3 font-semibold text-gray-900 hover:bg-gray-100">
+              Killer Queen Arcade
+            </Link>
+            <Link href="/buy-sell-fix-contact" className="rounded-xl border border-white/70 px-5 py-3 font-semibold text-white hover:bg-white/10">
+              Buy • Sell • Fix • Contact
+            </Link>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="bg-rose-800">
       <div className="mx-auto max-w-6xl px-4 py-10 text-center">
-        <h2 className="text-2xl font-extrabold text-white">
-          Thanks for playing, Madison!
-        </h2>
-        <p className="mt-2 text-white/90">
-          Keep up with monthly meetups, Killer Queen nights, and more.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Link
-            href="/killer-queen-arcade"
-            className="rounded-xl bg-white px-5 py-3 font-semibold text-gray-900 hover:bg-gray-100"
-          >
-            Killer Queen Arcade
-          </Link>
-          <Link
-            href="/buy-sell-fix-contact"
-            className="rounded-xl border border-white/70 px-5 py-3 font-semibold text-white hover:bg-white/10"
-          >
-            Buy • Sell • Fix • Contact
-          </Link>
-        </div>
+        {title && <h2 className="text-2xl font-extrabold text-white">{title}</h2>}
+        {summary && <p className="mt-2 text-white/90">{summary}</p>}
+        {buttons?.length ? (
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            {buttons.map((b, i) =>
+              b.outline ? (
+                <Link key={i} href={b.href || '#'} className="rounded-xl border border-white/70 px-5 py-3 font-semibold text-white hover:bg-white/10">
+                  {b.label}
+                </Link>
+              ) : (
+                <Link key={i} href={b.href || '#'} className="rounded-xl bg-white px-5 py-3 font-semibold text-gray-900 hover:bg-gray-100">
+                  {b.label}
+                </Link>
+              )
+            )}
+          </div>
+        ) : null}
       </div>
     </section>
   );

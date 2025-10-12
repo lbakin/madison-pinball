@@ -1,15 +1,37 @@
+// /src/components/Hero.jsx
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { urlFor } from "~/src/lib/image";
 
-export default function Hero() {
+export default function Hero({
+  // Sanity-driven props (all optional)
+  image,          // Sanity image object
+  eyebrow,        // string
+  heading,        // string
+  subheading,     // string
+  buttons = [],   // [{label, href, style:'solid'|'outline'}]
+}) {
+  const bgUrl = image
+    ? urlFor(image).width(2000).height(1200).fit("crop").url()
+    : "/images/neon-detail.jpg";
+
+  // Fallback buttons if none provided by Sanity
+  const btns = buttons?.length
+    ? buttons
+    : [
+        { label: "Where to Play", href: "/locations", style: "solid" },
+        { label: "Monthly Meetups", href: "/monthly-meetups", style: "ghost" },
+        { label: "Report a Problem", href: "/report-a-problem", style: "outline" },
+      ];
+
   return (
     <section className="relative min-h-[70vh] w-full overflow-hidden bg-black">
-      
+      {/* Background */}
       <div className="absolute inset-0">
         <Image
-          src="/images/neon-detail.jpg"
-          alt="Close-up of a lit pinball machine"
+          src={bgUrl}
+          alt={heading || "Close-up of a lit pinball machine"}
           fill
           priority
           className="object-cover"
@@ -18,34 +40,38 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
       </div>
 
-      
+      {/* Foreground */}
       <div className="relative z-10 mx-auto max-w-6xl px-4 py-24 sm:py-28">
         <div className="max-w-3xl">
-          
+          {eyebrow ? (
+            <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-white/80">
+              {eyebrow}
+            </p>
+          ) : null}
+
           <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-6xl drop-shadow">
-            Bringing Quality Pinball To Madison
+            {heading || "Bringing Quality Pinball To Madison"}
           </h1>
 
+          {subheading ? (
+            <p className="mt-3 max-w-2xl text-white/90">{subheading}</p>
+          ) : null}
 
           <div className="mt-10 flex flex-wrap gap-3">
-            <Link
-              href="/locations"
-              className="rounded-xl bg-rose-600 px-5 py-3 text-white font-semibold hover:bg-rose-700 transition"
-            >
-              Where to Play
-            </Link>
-            <Link
-              href="/monthly-meetups"
-              className="rounded-xl bg-white/10 px-5 py-3 text-white backdrop-blur hover:bg-white/20 transition"
-            >
-              Monthly Meetups
-            </Link>
-            <Link
-              href="/report-a-problem"
-              className="rounded-xl border border-white/30 px-5 py-3 text-white hover:bg-white/10 transition"
-            >
-              Report a Problem
-            </Link>
+            {btns.map((b, i) => {
+              const base = "rounded-xl px-5 py-3 font-semibold transition";
+              const cls =
+                b.style === "outline"
+                  ? `${base} border border-white/30 text-white hover:bg-white/10`
+                  : b.style === "ghost"
+                  ? `${base} bg-white/10 text-white backdrop-blur hover:bg-white/20`
+                  : `${base} bg-rose-600 text-white hover:bg-rose-700`;
+              return (
+                <Link key={i} href={b.href || "#"} className={cls}>
+                  {b.label}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>
