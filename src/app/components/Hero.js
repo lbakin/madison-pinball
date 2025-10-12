@@ -7,7 +7,6 @@ import { urlFor } from "~/src/lib/image";
 export default function Hero({
   // Sanity-driven props (all optional)
   image,          // Sanity image object
-  eyebrow,        // string
   heading,        // string
   subheading,     // string
   buttons = [],   // [{label, href, style:'solid'|'outline'}]
@@ -43,12 +42,6 @@ export default function Hero({
       {/* Foreground */}
       <div className="relative z-10 mx-auto max-w-6xl px-4 py-24 sm:py-28">
         <div className="max-w-3xl">
-          {eyebrow ? (
-            <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-white/80">
-              {eyebrow}
-            </p>
-          ) : null}
-
           <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-6xl drop-shadow">
             {heading || "Bringing Quality Pinball To Madison"}
           </h1>
@@ -59,13 +52,17 @@ export default function Hero({
 
           <div className="mt-10 flex flex-wrap gap-3">
             {btns.map((b, i) => {
-              const base = "rounded-xl px-5 py-3 font-semibold transition";
+              const base =
+                "rounded-xl px-5 py-3 font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-800";
               const cls =
                 b.style === "outline"
                   ? `${base} border border-white/30 text-white hover:bg-white/10`
                   : b.style === "ghost"
                   ? `${base} bg-white/10 text-white backdrop-blur hover:bg-white/20`
-                  : `${base} bg-rose-600 text-white hover:bg-rose-700`;
+                  : b.style === "white" // NEW
+                  ? `${base} bg-white text-black hover:bg-white/90`
+                  : `${base} bg-rose-600 text-white hover:bg-rose-700`; // solid (default)
+
               return (
                 <Link key={i} href={b.href || "#"} className={cls}>
                   {b.label}

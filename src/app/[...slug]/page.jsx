@@ -80,10 +80,6 @@ function Sections({ sections }) {
             return <FAQ key={i} {...s} />
           case 'sectionHTML':
             return <div key={i} className="mb-10" dangerouslySetInnerHTML={{ __html: s.html }} />
-          case 'sectionMeetups':
-            return <MeetupsModule key={i} heading={s.heading} notes={s.notes} />
-          case 'sectionLocations':
-            return <LocationsModule key={i} heading={s.heading} />
           default:
             return null
         }
@@ -167,7 +163,7 @@ function Gallery({ columns = 3, images = [] }) {
   return (
     <section className={`mb-10 grid gap-3 ${cls}`}>
       {images.map((img, i) => (
-        <Image key={i} src={urlFor(img).width(1000).height(700).fit('crop').url()} alt={`Gallery ${i + 1}`} width={1000} height={700} className="rounded-lg object-cover w-full h-auto" />
+        <Image key={i} src={urlFor(img).width(1000).fit('crop').url()} alt={`Gallery ${i + 1}`} width={1000} height={700} className="rounded-lg object-cover w-full h-auto" />
       ))}
     </section>
   )
@@ -180,7 +176,7 @@ function Cards({ items = [] }) {
         <div key={i} className="rounded-2xl bg-zinc-900 p-4">
           {c.image && (
             <Image
-              src={urlFor(c.image).width(800).height(500).fit('crop').url()}
+              src={urlFor(c.image).width(800).fit('crop').url()}
               alt={c.title || 'Card'}
               width={800}
               height={500}
@@ -239,25 +235,3 @@ function FAQ({ items = [] }) {
   )
 }
 
-// App-specific modules can delegate to your existing queries/components.
-// Keeping them simple here so you can wire in richer versions later.
-async function MeetupsModule({ heading, notes }) {
-  // You can inline-fetch meetups or reuse your /monthly-meetups logic
-  // For brevity, render a link out:
-  return (
-    <section className="mb-10">
-      {heading && <h3 className="mb-2 text-2xl font-semibold">{heading}</h3>}
-      {notes && <p className="mb-3 text-zinc-300">{notes}</p>}
-      <a href="/monthly-meetups" className="underline hover:text-rose-800">See all meetups</a>
-    </section>
-  )
-}
-
-function LocationsModule({ heading }) {
-  return (
-    <section className="mb-10">
-      {heading && <h3 className="mb-3 text-2xl font-semibold">{heading}</h3>}
-      <a href="/locations" className="underline hover:text-rose-800">Browse locations</a>
-    </section>
-  )
-}

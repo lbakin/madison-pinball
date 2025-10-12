@@ -5,7 +5,7 @@ import { sanityClient } from "~/src/lib/client";
 import { locationsIndexQ } from "~/src/lib/queries";
 import { urlFor } from "~/src/lib/image";
 
-export const revalidate = 300; // cache + ISR, adjust as needed
+export const revalidate = 60; // cache + ISR, adjust as needed
 
 function LocationCard({ slug, name, image }) {
   // Prefer Sanity image; otherwise fall back to your /public image

@@ -11,7 +11,7 @@ import sectionCards from './sections/cards'
 import sectionCTA from './sections/cta'
 import sectionFAQ from './sections/faq'
 import sectionHTML from './sections/html'
-import { sectionMeetups, sectionLocations, linkButton } from './sections/shared'
+import { linkButton } from './sections/shared'
 import homePage from './homePage'
 import monthlyMeetups from './monthlyMeetups'
 import killerQueen from './killerQueen'
@@ -30,8 +30,6 @@ export const schemaTypes = [
   sectionCTA,
   sectionFAQ,
   sectionHTML,
-  sectionMeetups,
-  sectionLocations,
   linkButton,
   hoursItem,
   lineupItem,

@@ -161,8 +161,8 @@ export default async function MonthlyMeetupsPage() {
             <thead className="bg-gray-900 text-left text-gray-300">
               <tr>
                 <th scope="col" className="px-4 py-3 font-medium">Schwoegler&apos;s</th>
-                <th scope="col" className="px-4 py-3 font-medium">I/O Arcade Main</th>
-                <th scope="col" className="px-4 py-3 font-medium">I/O Arcade Heads-Up!</th>
+                <th scope="col" className="px-4 py-3 font-medium">I/O Arcade - Main</th>
+                <th scope="col" className="px-4 py-3 font-medium">I/O Arcade - Heads-Up!</th>
                 <th scope="col" className="px-4 py-3 font-medium">Pooley&apos;s</th>
               </tr>
             </thead>

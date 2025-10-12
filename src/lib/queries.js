@@ -44,15 +44,13 @@ export const pageBySlugQ = /* groq */ `
       _type == "sectionCTA" => { heading, body, buttons },
       _type == "sectionFAQ" => { items },
       _type == "sectionHTML" => { html },
-      _type == "sectionMeetups" => { heading, notes },
-      _type == "sectionLocations" => { heading }
     )
   }
 }
 `
 
 export const homePageQ = groq`*[_type == "homePage"][0]{
-  heroEyebrow, heroHeading, heroSubheading, heroImage, heroButtons[],
+  heroHeading, heroSubheading, heroImage, heroButtons[],
   copyRich,
   ctaTitle, ctaSummary, ctaButtons[]
 }`

@@ -3,31 +3,24 @@ import { sanityClient } from "~/src/lib/client";
 import { homePageQ } from "~/src/lib/queries";
 import Hero from "@/components/Hero";
 import CtaBar from "@/components/CtaBar";
+import RichText from "@/components/RichText";
+
 
 export const revalidate = 60;
 
-import { PortableText } from "@portabletext/react";
-
-const pt = {
-  marks: {
-    link: ({ value, children }) => (
-      <a href={value?.href} className="underline hover:text-rose-800">{children}</a>
-    ),
-  },
-};
 
 function CopySection({ value }) {
-  if (value?.length) {
-    return (
-      <section className="bg-gray-900">
-        <div className="mx-auto max-w-3xl px-4 py-12 sm:py-16">
-          <div className="prose prose-invert prose-p:leading-relaxed">
-            <PortableText value={value} components={pt} />
-          </div>
-        </div>
-      </section>
-    );
-  }
+   if (value?.length) {
+     return (
+       <section className="bg-gray-900">
+         <div className="mx-auto max-w-3xl px-4 py-12 sm:py-16">
+           <div className="prose prose-invert prose-p:leading-relaxed">
+             <RichText value={value} />
+           </div>
+         </div>
+       </section>
+     );
+   }
 
   // Fallback to your current hard-coded text if Sanity is empty
   return (

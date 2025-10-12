@@ -32,9 +32,6 @@ export default {
         { type: 'sectionCTA' },
         { type: 'sectionFAQ' },
         { type: 'sectionHTML' },
-        // App-specific modules (toggle in as you need)
-        { type: 'sectionMeetups' },
-        { type: 'sectionLocations' },
       ],
     },
   ],
