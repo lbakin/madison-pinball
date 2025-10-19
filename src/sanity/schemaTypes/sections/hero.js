@@ -10,7 +10,7 @@ export default {
     {
       name: 'layout',
       type: 'string',
-      options: { list: ['image-left', 'image-right', 'image-bg'], layout: 'radio' },
+      options: { list: ['image-center', 'image-left', 'image-right', 'image-bg'], layout: 'radio' },
       initialValue: 'image-bg',
     },
     { name: 'cta', type: 'array', of: [{ type: 'linkButton' }] },

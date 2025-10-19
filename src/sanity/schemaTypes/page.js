@@ -17,9 +17,67 @@ export default {
       type: 'object',
       fields: [
         { name: 'description', type: 'text' },
-        { name: 'image', type: 'image', options: { hotspot: true } },
       ],
     },
+    // {
+    //   name: 'style',
+    //   title: 'Page Style',
+    //   type: 'object',
+    //   fields: [
+    //     {
+    //       name: 'theme',
+    //       title: 'Theme',
+    //       type: 'string',
+    //       options: {
+    //         list: [
+    //           { title: 'Dark (default)', value: 'dark' },
+    //           { title: 'Light', value: 'light' },
+    //           { title: 'Custom', value: 'custom' },
+    //         ],
+    //         layout: 'radio',
+    //         direction: 'horizontal',
+    //       },
+    //       initialValue: 'dark',
+    //     },
+    //     {
+    //       name: 'bg',
+    //       title: 'Custom Background',
+    //       type: 'string',
+    //       hidden: ({ parent }) => parent?.theme !== 'custom',
+    //       options: {
+    //         list: [
+    //           { title: 'bg-black', value: 'bg-black' },
+    //           { title: 'bg-zinc-950', value: 'bg-zinc-950' },
+    //           { title: 'bg-zinc-900', value: 'bg-zinc-900' },
+    //           { title: 'bg-white', value: 'bg-white' },
+    //           { title: 'bg-zinc-50', value: 'bg-zinc-50' },
+    //         ],
+    //       },
+    //     },
+    //     {
+    //       name: 'text',
+    //       title: 'Custom Text Color',
+    //       type: 'string',
+    //       hidden: ({ parent }) => parent?.theme !== 'custom',
+    //       options: {
+    //         list: [
+    //           { title: 'text-white', value: 'text-white' },
+    //           { title: 'text-zinc-100', value: 'text-zinc-100' },
+    //           { title: 'text-zinc-200', value: 'text-zinc-200' },
+    //           { title: 'text-black', value: 'text-black' },
+    //           { title: 'text-zinc-900', value: 'text-zinc-900' },
+    //         ],
+    //       },
+    //     },
+    //     {
+    //       name: 'invertProse',
+    //       title: 'Invert body text (for PortableText)',
+    //       description: 'Use "prose-invert" when body is on a dark background.',
+    //       type: 'boolean',
+    //       initialValue: true,
+    //     },
+    //   ],
+    // },
     {
       name: 'sections',
       type: 'array',

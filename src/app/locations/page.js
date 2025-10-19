@@ -8,7 +8,7 @@ import { urlFor } from "~/src/lib/image";
 export const revalidate = 60; // cache + ISR, adjust as needed
 
 function LocationCard({ slug, name, image }) {
-  // Prefer Sanity image; otherwise fall back to your /public image
+  // Prefer Sanity image; otherwise fall back to /public image
   const fallback = `/images/locations/${slug}.png`;
   const imgSrc = image ? urlFor(image).width(1000).fit("crop").url() : fallback;
 

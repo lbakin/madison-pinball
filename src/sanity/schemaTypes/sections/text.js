@@ -4,7 +4,7 @@ export default {
   type: 'object',
   fields: [
     { name: 'width', type: 'string', options: { list: ['narrow', 'wide'] }, initialValue: 'narrow' },
-    { name: 'body', type: 'array', of: [{ type: 'block' }] }, // Portable Text
+    { name: 'body', type: 'array', of: [{ type: 'block' }] },
   ],
   preview: { select: { title: 'width' }, prepare: ({ title }) => ({ title: `Text (${title})` }) },
 }

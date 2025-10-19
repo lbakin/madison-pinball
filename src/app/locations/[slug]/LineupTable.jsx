@@ -1,6 +1,22 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { PortableText } from "@portabletext/react";
+
+const notesPT = {
+  marks: {
+    link: ({ children, value }) => (
+      <a
+        href={value?.href}
+        target={value?.blank ? "_blank" : undefined}
+        rel={value?.blank ? "noopener noreferrer" : undefined}
+        className="underline hover:text-rose-800"
+      >
+        {children}
+      </a>
+    ),
+  },
+};
 
 export default function LineupTable({ rows }) {
   const [sortKey, setSortKey] = useState("game"); // "game" | "year" | "manufacturer"
@@ -9,8 +25,8 @@ export default function LineupTable({ rows }) {
   const sorted = useMemo(() => {
     const copy = [...(rows || [])];
     copy.sort((a, b) => {
-      const av = (a[sortKey] || "").toString().toLowerCase();
-      const bv = (b[sortKey] || "").toString().toLowerCase();
+      const av = (a?.[sortKey] || "").toString().toLowerCase();
+      const bv = (b?.[sortKey] || "").toString().toLowerCase();
       if (av < bv) return sortDir === "asc" ? -1 : 1;
       if (av > bv) return sortDir === "asc" ? 1 : -1;
       return 0;
@@ -66,12 +82,14 @@ export default function LineupTable({ rows }) {
                   <Arrow active={sortKey === "manufacturer"} dir={sortKey === "manufacturer" ? sortDir : "asc"} />
                 </button>
               </th>
+              {/* New Notes column (not sortable) */}
+              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900">Notes</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
             {sorted && sorted.length ? (
               sorted.map((row, idx) => (
-                <tr key={`${row.game}-${idx}`} className="hover:bg-gray-50">
+                <tr key={`${row.game}-${idx}`} className="hover:bg-gray-50 align-top">
                   <td className="px-4 py-3 text-gray-900">
                     {row.link ? (
                       <a href={row.link} target="_blank" rel="noopener noreferrer" className="underline hover:text-rose-800">
@@ -83,11 +101,18 @@ export default function LineupTable({ rows }) {
                   </td>
                   <td className="px-4 py-3 text-gray-700">{row.year}</td>
                   <td className="px-4 py-3 text-gray-700">{row.manufacturer}</td>
+                  <td className="px-4 py-3 text-gray-700">
+                    {row.notes?.length ? (
+                      <PortableText value={row.notes} components={notesPT} />
+                    ) : (
+                      <span className="text-gray-400">—</span>
+                    )}
+                  </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan={3} className="px-4 py-6 text-center text-gray-700">Lineup coming soon.</td>
+                <td colSpan={4} className="px-4 py-6 text-center text-gray-700">Lineup coming soon.</td>
               </tr>
             )}
           </tbody>
