@@ -24,7 +24,7 @@ export default async function SiteNavServer() {
         { href: '/buy-sell-fix-contact', label: 'Buy/Sell/Fix/Contact' },
       ]
 
-  const logoUrl = settings?.logo ? urlFor(settings.logo).width(200).height(50).fit('max').url() : '/images/logo.png'
+  const logoUrl = settings?.logo ? urlFor(settings.logo).width(200).fit('max').url() : '/images/logo.png'
 
   return <Nav items={navItems} locs={locs || []} logoUrl={logoUrl} siteTitle={settings?.title || 'Madison Pinball'} />
 }

@@ -30,6 +30,20 @@ export default {
 
     // Netlify form config + success copy
     { name: "formName", type: "string", title: "Form Name", initialValue: "contact" },
+    {
+      name: "notificationEmailInfo",
+      type: "string",
+      title: "Notification Recipient (for reference only)",
+      description: `
+        ⚠️ IMPORTANT: Changing this field does NOT change where the form submissions are actually sent.
+        You must also log in to Netlify, open the “Forms” tab, select the form notifications settings,
+        and update the notification email address there.  
+        This field is only for reference and documentation to keep Sanity and Netlify in sync.  
+        https://app.netlify.com/projects/madison-pinball/forms
+      `,
+      initialValue: "pinballmadison@gmail.com",
+      validation: (Rule) => Rule.email().warning("Must be a valid email address."),
+    },
     { name: "successTitle", type: "string", title: "Success Title", initialValue: "Thanks" },
     {
       name: "successBody",
